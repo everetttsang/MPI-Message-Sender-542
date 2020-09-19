@@ -36,8 +36,8 @@ int main(int argc, char** argv) {
     long int rttSum=0;
     double rttAvg;
     // for (j=0; j<1000; j++){
-      // int k;
-      // long int totalDataSent=0;
+         int k;
+         long int totalDataSent=0;
       for (k=0; k< timesToSend; k++){
         int time1;
         int time2;
@@ -62,14 +62,14 @@ int main(int argc, char** argv) {
           //printf("Received %d from node0\n",number2);
           MPI_Send(&number2, sizeof(number2), MPI_INT, 0, 0, MPI_COMM_WORLD);
         }
-      }
+    //  }
       // if(j==0){
         // printf("Total data sent %ld\n", totalDataSent);
       // }
     }
-
-    rttAvg = rttSum/ 1000.0;
-    printf("Sent %ld 1000x. Average RTT = %d.\n", timesToSend*2, rttAvg);
+    printf("RTT for %ld: %ld\n", timesToSend*2, rttSum);
+    //rttAvg = rttSum/ 1000.0;
+    //printf("Sent %ld 1000x. Average RTT = %d.\n", timesToSend*2, rttAvg);
 
   }
 
