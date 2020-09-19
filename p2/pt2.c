@@ -22,19 +22,20 @@ int main(int argc, char** argv) {
   //
   //
   int number1=42;
+  printf("Size of number1: %d\n", sizeof(number1));
   int number2;
   if(world_rank==0){
     printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
-    MPI_SEND(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
-    MPI_Recv(&number1, 2, MP_INT, 1, 0, MPI_COM_WORLD,, MPI_STATUS_IGNORE);
+    MPI_Send(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
+    MPI_Recv(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     printf("Received %d from node1\n",number1);
   }
 
   if (world_rank ==1){
 
-    MPI_Recv(&number2, 2, MP_INT, 0, 0, MPI_COM_WORLD,, MPI_STATUS_IGNORE);
+    MPI_Recv(&number2, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     printf("Received %d from node0\n",number2);
-    MPI_SEND(&number2, 2, MPI_INT, 0, 0, MPI_COMM_WORLD);
+    MPI_Send(&number2, 2, MPI_INT, 0, 0, MPI_COMM_WORLD);
   }
 
   if(world_rank ==2){
