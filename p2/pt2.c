@@ -35,9 +35,9 @@ int main(int argc, char** argv) {
     int j;
     long int rttSum=0;
     double rttAvg;
-    for (j=0; j<1000; j++){
-      int k;
-      long int totalDataSent=0;
+    // for (j=0; j<1000; j++){
+      // int k;
+      // long int totalDataSent=0;
       for (k=0; k< timesToSend; k++){
         int time1;
         int time2;
@@ -63,9 +63,9 @@ int main(int argc, char** argv) {
           MPI_Send(&number2, sizeof(number2), MPI_INT, 0, 0, MPI_COMM_WORLD);
         }
       }
-      if(j==0){
-        printf("Total data sent %ld\n", totalDataSent);
-      }
+      // if(j==0){
+        // printf("Total data sent %ld\n", totalDataSent);
+      // }
     }
 
     rttAvg = rttSum/ 1000.0;
