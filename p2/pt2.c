@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
       int time1;
       int time2;
       int rtt;
-      long int dataToSend=0;
+      long long int dataToSend=0;
       int j;
       int k;
       for (k=0; k< timesToSend; k++){
@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
       }
 
       rtt = time2-time1;
-      printf("Data sent: %ld bytes. RTT: %ld\n", rtt);
+      printf("Data sent: %ld bytes. RTT: %ld\n", dataToSend, rtt);
 
     }
 
