@@ -33,12 +33,12 @@ int main(int argc, char** argv) {
   if(world_rank==0){
     //printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
 
-    for (i=0; i<31; i++){
+    for (i=0; i<30; i++){
       long int timesToSend = pow ( 2, i);
       printf("Sending number size %d %ld times.\n", sizeof(number1), timesToSend);
       int time1;
       int time2;
-      int rtt;
+      long int rtt;
       long long int dataToSend=0;
       int j;
       int k;
@@ -47,14 +47,14 @@ int main(int argc, char** argv) {
 
         if(k==0){
           gettimeofday(&ts, NULL);
-          time1=ts.tv_usec;
+          time1=ts.tv_sec;
         }
         MPI_Send(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD);
         dataToSend+= sizeof(number1);
         MPI_Recv(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         if(k==timesToSend-1){
           gettimeofday(&ts, NULL);
-          time2= ts.tv_usec;
+          time2= ts.tv_sec;
         }
       }
 
