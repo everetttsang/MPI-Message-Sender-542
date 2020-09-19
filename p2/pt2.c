@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
   //
   //
   int number1=42;
+  int number2;
   if(world_rank==0){
     printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
     MPI_SEND(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
