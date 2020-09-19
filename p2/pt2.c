@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     int j;
     int rttSum=0;
     double rttAvg;
-    for (j=0; j<1000-; j++){
+    for (j=0; j<1000; j++){
 
       int time1;
       int time2;
@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
       }
     }
     rttAvg = rttSum/ 1000.0;
-    printf("Sent %d 1000x. Average RTT = %d.\n", number1, avgRTT);
+    printf("Sent %d 1000x. Average RTT = %d.\n", number1, rttAvg);
 
   }
 
