@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
   //
   //
   int i;
-  int number1=1;
+  short int number1=1;
   printf("Size of number1: %d\n", sizeof(number1));
   int number2;
 
