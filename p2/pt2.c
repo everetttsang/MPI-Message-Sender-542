@@ -49,7 +49,6 @@ int main(int argc, char** argv) {
         rttSum += (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
       }
       
-      printf("RTT Sum: %d\n", rttSum);
       rttAvg = (double) rttSum / 2000;
       printf("Buffer Size: %d\n", byteSize);
       printf("Number of Int Elements: %d\n", numElements);
