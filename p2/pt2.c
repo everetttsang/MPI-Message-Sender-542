@@ -30,13 +30,14 @@ int main(int argc, char** argv) {
   int number2;
 
   for (i=0; i<31; i++){
-    int timesToSend = pow ( 2, i);
+    long int timesToSend = pow ( 2, i);
+    printf("Sending number size %d %ld times.\n", sizeof(number1), timesToSend);
     int j;
-    int rttSum=0;
+    long int rttSum=0;
     double rttAvg;
     for (j=0; j<1000; j++){
       int k;
-      int totalDataSent=0;
+      long int totalDataSent=0;
       for (k=0; k< timesToSend; k++){
         int time1;
         int time2;
@@ -63,12 +64,12 @@ int main(int argc, char** argv) {
         }
       }
       if(j==0){
-        printf("Total data sent %d\n", totalDataSent);
+        printf("Total data sent %ld\n", totalDataSent);
       }
     }
 
     rttAvg = rttSum/ 1000.0;
-    printf("Sent %d 1000x. Average RTT = %d.\n", number1, rttAvg);
+    printf("Sent %ld 1000x. Average RTT = %d.\n", timesToSend*2, rttAvg);
 
   }
 
