@@ -34,11 +34,11 @@ int main(int argc, char** argv) {
     int rtt;
     if(world_rank==0){
       printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
-      gettime(&ts, NULL);
+      gettimeofday(&ts, NULL);
       time1=ts.tv_usec;
       MPI_Send(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD);
       MPI_Recv(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      gettime(&ts, NULL);
+      gettimeofday(&ts, NULL);
       time2= ts.tv_usec;
       rtt = time2-time1;
       printf("Received %d from node1\nRTT: %d microseconds.\n",number1,rtt);
