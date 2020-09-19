@@ -1,5 +1,6 @@
 #include <mpi.h>
 #include <stdio.h>
+#include <math.h>
 
 int main(int argc, char** argv) {
   // Initialize the MPI environment. The two arguments to MPI Init are not
@@ -21,28 +22,27 @@ int main(int argc, char** argv) {
   MPI_Get_processor_name(processor_name, &name_len);
   //
   //
-  int number1=42;
-  printf("Size of number1: %d\n", sizeof(number1));
-  int number2;
-  if(world_rank==0){
-    printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
-    MPI_Send(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
-    MPI_Recv(&number1, 2, MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-    printf("Received %d from node1\n",number1);
+  int i;
+  for (i=0; i<31; i++){
+    int number1=pow(2, i);
+    printf("Size of number1: %d\n", sizeof(number1));
+    int number2;
+    if(world_rank==0){
+      printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
+      MPI_Send(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD);
+      MPI_Recv(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      printf("Received %d from node1\n",number1);
+    }
+
+    if (world_rank ==1){
+
+      MPI_Recv(&number2, sizeof(number2), MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      printf("Received %d from node0\n",number2);
+      MPI_Send(&number2, sizeof(number2), MPI_INT, 0, 0, MPI_COMM_WORLD);
+    }
   }
 
-  if (world_rank ==1){
-
-    MPI_Recv(&number2, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-    printf("Received %d from node0\n",number2);
-    MPI_Send(&number2, 2, MPI_INT, 0, 0, MPI_COMM_WORLD);
-  }
-
-  if(world_rank ==2){
-    printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
-  }
-  //
-  //                                       // Finalize the MPI environment. No more MPI calls can be made after this
+  // Finalize the MPI environment. No more MPI calls can be made after this
   MPI_Finalize();
 }
 //
