@@ -1,8 +1,10 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <math.h>
+#include <sys/time.h>
 
 int main(int argc, char** argv) {
+  struct timeval ts;
   // Initialize the MPI environment. The two arguments to MPI Init are not
   //   // currently used by MPI implementations, but are there in case future
   //     // implementations might need the arguments.
@@ -27,11 +29,19 @@ int main(int argc, char** argv) {
     int number1=pow(2, i);
     printf("Size of number1: %d\n", sizeof(number1));
     int number2;
+    int time1;
+    int time2;
+    int rtt;
     if(world_rank==0){
       printf("Hello I'm processor %s with rank %d\n", processor_name, world_rank);
+      gettime(&ts, NULL);
+      time1=ts.tv_usec;
       MPI_Send(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD);
       MPI_Recv(&number1, sizeof(number1), MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      printf("Received %d from node1\n",number1);
+      gettime(&ts, NULL);
+      time2= ts.tv_usec;
+      rtt = time2-time1;
+      printf("Received %d from node1\nRTT: %d microseconds.\n",number1,rtt);
     }
 
     if (world_rank ==1){
