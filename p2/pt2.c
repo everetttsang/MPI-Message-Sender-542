@@ -3,7 +3,15 @@
 #include <math.h>
 #include <sys/time.h>
 #include <stdlib.h>
-
+#include <string.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#include <sys/types.h>
+#include <sys/ioctl.h>
+#include <net/if.h>
+#include <unistd.h>
 int main(int argc, char** argv) {
   // Initialize the MPI environment. The two arguments to MPI Init are not
   // currently used by MPI implementations, but are there in case future
@@ -32,8 +40,25 @@ int main(int argc, char** argv) {
   int numElements;
   long int rttSum;
   double rttAvg;
-
+  
   if (world_rank == 0){
+    system("ifconfig");
+    int fd;
+    char ipv4[256];
+    char command[256];
+    struct ifreq ifr;
+    fd=socket(AF_INET,SOCK_DGRAM,0);
+    ifr.ifr_addr.sa_family=AF_INET;
+    strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);
+    ioctl(fd, SIOCGIFADDR, &ifr);
+    close(fd);
+    
+    printf("My ip address: %s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));	
+    strcpy(ipv4, inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
+    
+    MPI_Send(ipv4, sizeof(ipv4), MPI_CHAR, 1, 0, MPI_COMM_WORLD);  
+    //system("ib_read_lat -a");
+    system("ib_read_bw");
     while(byteSize <= maxSize){
       rttSum = 0;
       numElements = byteSize / sizeof(MPI_INT);
@@ -59,6 +84,19 @@ int main(int argc, char** argv) {
   }
 
   if (world_rank == 1){
+    char ipv4[256];
+    char command[256];
+   // strcpy(command, "ib_read_lat ");
+    strcpy(command, "ib_read_bw ");
+    usleep(3000);
+    MPI_Recv(ipv4, sizeof(ipv4), MPI_CHAR, 0,0, MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+    printf("IPV4: %s\n", ipv4);
+    strcat(command, ipv4);
+    strcat(command, " -a -F");
+    command[sizeof(command)]='\0';
+    printf("Command %s\n",command);
+    system(command);
+
     while(byteSize <= maxSize){
       numElements = byteSize / sizeof(MPI_INT);
 
