@@ -40,7 +40,8 @@ int main(int argc, char** argv) {
   int numElements;
   long int rttSum;
   double rttAvg;
-  
+  double throughput;
+
   if (world_rank == 0){
     system("ifconfig");
     int fd;
@@ -52,11 +53,11 @@ int main(int argc, char** argv) {
     strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);
     ioctl(fd, SIOCGIFADDR, &ifr);
     close(fd);
-    
-    printf("My ip address: %s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));	
+
+    printf("My ip address: %s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
     strcpy(ipv4, inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
-    
-    MPI_Send(ipv4, sizeof(ipv4), MPI_CHAR, 1, 0, MPI_COMM_WORLD);  
+
+    MPI_Send(ipv4, sizeof(ipv4), MPI_CHAR, 1, 0, MPI_COMM_WORLD);
     //system("ib_read_lat -a");
     system("ib_read_bw");
     while(byteSize <= maxSize){
@@ -70,14 +71,17 @@ int main(int argc, char** argv) {
         MPI_Recv(data, numElements, MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
         gettimeofday(&end, NULL);
-              
+
         rttSum += (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
       }
-      
+
       rttAvg = (double) rttSum / 2000;
+
+      //throughput = ( bits / second)
+      throughput = (byteSize*8) / (rttAvg  / 1e6);
       printf("Buffer Size: %d\n", byteSize);
       printf("Number of Int Elements: %d\n", numElements);
-      printf("Average Round Trip Time: %f\n\n", rttAvg);
+      printf("Average Round Trip Time (Latency): %f\n\n", rttAvg);
 
       byteSize = byteSize * 2;
     }
