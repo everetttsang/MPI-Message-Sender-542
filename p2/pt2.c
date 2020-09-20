@@ -41,9 +41,10 @@ int main(int argc, char** argv) {
   long int rttSum;
   double rttAvg;
   double throughput;
+  
 
   if (world_rank == 0){
-    system("ifconfig");
+    //system("ifconfig");
     int fd;
     char ipv4[256];
     char command[256];
@@ -58,8 +59,9 @@ int main(int argc, char** argv) {
     strcpy(ipv4, inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
 
     MPI_Send(ipv4, sizeof(ipv4), MPI_CHAR, 1, 0, MPI_COMM_WORLD);
-    //system("ib_read_lat -a");
-    system("ib_read_bw");
+    system("ib_read_lat -a");
+    MPI_Recv(ipv4, sizeof(ipv4), MPI_CHAR, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    system("ib_read_bw -a");
     while(byteSize <= maxSize){
       rttSum = 0;
       numElements = byteSize / sizeof(MPI_INT);
@@ -77,30 +79,42 @@ int main(int argc, char** argv) {
 
       rttAvg = (double) rttSum / 2000;
 
-      //throughput = ( bits / second)
-      throughput = (byteSize*8) / (rttAvg  / 1e6);
+     
       printf("Buffer Size: %d\n", byteSize);
       printf("Number of Int Elements: %d\n", numElements);
-      printf("Average Round Trip Time (Latency): %f\n\n", rttAvg);
-
+      printf("Average Round Trip Time (Latency): %f\n", rttAvg);
+      throughput = byteSize / rttAvg; //MBps
+      printf("Throughput: %f\n", throughput);
       byteSize = byteSize * 2;
     }
   }
 
   if (world_rank == 1){
     char ipv4[256];
-    char command[256];
-   // strcpy(command, "ib_read_lat ");
-    strcpy(command, "ib_read_bw ");
+    char command1[256];
+    char command2[256];
+    strcpy(command1, "ib_read_lat ");
+    strcpy(command2, "ib_read_bw ");
+    printf("Command2 %s\n", command2);
     usleep(3000);
     MPI_Recv(ipv4, sizeof(ipv4), MPI_CHAR, 0,0, MPI_COMM_WORLD,MPI_STATUS_IGNORE);
     printf("IPV4: %s\n", ipv4);
-    strcat(command, ipv4);
-    strcat(command, " -a -F");
-    command[sizeof(command)]='\0';
-    printf("Command %s\n",command);
-    system(command);
-
+    strcat(command1, ipv4);
+    strcat(command1, " -a -F");
+    printf("Changed ipv4 %s\n", ipv4);
+    strcat(command2, ipv4);
+    printf("Command2 %s\n", command2);
+    strcat(command2, " -a -F");
+    printf("Command2 %s\n", command2);
+    //command1[sizeof(command1)]='\0';
+    //command2[sizeof(command2)]='\0';
+    printf("Command1 %s\n", command1);
+    printf("Command2 %s\n", command2);
+    system(command1);
+    //block send
+    MPI_Send(ipv4, sizeof(ipv4), MPI_CHAR, 0,0, MPI_COMM_WORLD);
+    usleep(30000);
+    system(command2);
     while(byteSize <= maxSize){
       numElements = byteSize / sizeof(MPI_INT);
 
