@@ -8,8 +8,13 @@ In this tutorial, 2 tasks are allocated in the batch job and the following tests
 3. Mellanox benchmark utility ib_read_lat to measure latency in increments of up to 8 MB of data.
 
 Compilation Instructions
-1. Execute the command: make
-2. To clean the directory, execute the command: make clean
+1. Before compiling, execute the following command
+    module purge
+    module load gcc/8.3.0
+    module load openmpi/4.0.2
+    module load pmix
+2. To compile, execute the command: make
+3. To clean the directory, execute the command: make clean
 
 Run Instructions
 1. Execute the command: sbatch --exlusive run.job
