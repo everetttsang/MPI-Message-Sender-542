@@ -1,0 +1,237 @@
+My ip address: 10.125.19.73
+
+************************************
+* Waiting for client to connect... *
+************************************
+---------------------------------------------------------------------------------------
+                    RDMA_Read Latency Test
+ Dual-port       : OFF		Device         : mlx4_0
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ TX depth        : 1
+ Mtu             : 2048[B]
+ Link type       : IB
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0x6aa QPN 0x1f8b9 PSN 0x48c6be OUT 0x10 RKey 0x38017deb VAddr 0x007f7da8a3d000
+---------------------------------------------------------------------------------------
+                    RDMA_Read Latency Test
+ Dual-port       : OFF		Device         : mlx4_0
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ Mtu             : 2048[B]
+ Link type       : IB
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0x6aa QPN 0x1f8ba PSN 0x9e72e6 OUT 0x10 RKey 0x38017eeb VAddr 0x007f6486e3e000
+ remote address: LID 0x6aa QPN 0x1f8ba PSN 0x9e72e6 OUT 0x10 RKey 0x38017eeb VAddr 0x007f6486e3e000
+ remote address: LID 0x6aa QPN 0x1f8b9 PSN 0x48c6be OUT 0x10 RKey 0x38017deb VAddr 0x007f7da8a3d000
+---------------------------------------------------------------------------------------
+ #bytes #iterations    t_min[usec]    t_max[usec]  t_typical[usec]    t_avg[usec]    t_stdev[usec]   99% percentile[usec]   99.9% percentile[usec] 
+ 2       1000          1.23           8.10         1.26     	       1.30        	0.18   		1.58    		8.10   
+ 4       1000          1.23           2.10         1.26     	       1.30        	0.09   		1.56    		2.10   
+ 8       1000          1.23           4.51         1.26     	       1.30        	0.11   		1.57    		4.51   
+ 16      1000          1.23           1.60         1.26     	       1.30        	0.10   		1.57    		1.60   
+ 32      1000          1.23           3.99         1.27     	       1.30        	0.08   		1.52    		3.99   
+ 64      1000          1.25           3.68         1.28     	       1.30        	0.05   		1.45    		3.68   
+ 128     1000          1.29           1.85         1.32     	       1.33        	0.04   		1.61    		1.85   
+ 256     1000          1.39           4.52         1.42     	       1.43        	0.05   		1.73    		4.52   
+ 512     1000          1.56           10.23        1.59     	       1.61        	0.15   		1.91    		10.23  
+ 1024    1000          1.87           10.78        1.92     	       1.96        	0.20   		2.12    		10.78  
+ 2048    1000          2.55           4.41         2.59     	       2.60        	0.03   		2.67    		4.41   
+ 4096    1000          2.95           4.99         3.04     	       3.05        	0.07   		3.25    		4.99   
+ 8192    1000          3.71           5.63         3.82     	       3.89        	0.15   		4.29    		5.63   
+ 16384   1000          5.23           20.16        5.33     	       5.39        	0.33   		5.72    		20.16  
+ 32768   1000          8.25           10.00        8.35     	       8.36        	0.07   		8.58    		10.00  
+ 65536   1000          14.33          14.75        14.44    	       14.45       	0.06   		14.69   		14.75  
+ 131072  1000          26.49          33.78        26.60    	       26.61       	0.07   		26.82   		33.78  
+ 262144  1000          50.80          51.30        50.90    	       50.90       	0.05   		51.12   		51.30  
+ 524288  1000          99.38          101.21       99.48    	       99.48       	0.08   		99.74   		101.21 
+ 1048576 1000          196.60         248.87       196.71   	       196.74      	0.32   		197.03  		248.87 
+ 2097152 1000          390.98         425.05       391.09   	       391.13      	0.46   		391.43  		425.05 
+ 4194304 1000          779.61         811.90       779.73   	       779.76      	0.08   		779.99  		811.90 
+ 8388608 1000          1606.12        1731.13      1629.67  	       1629.71     	5.76   		1642.29 		1731.13
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+************************************
+* Waiting for client to connect... *
+************************************
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx4_0
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ Mtu             : 2048[B]
+ Link type       : IB
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0x6aa QPN 0x1f8bb PSN 0x1636e1 OUT 0x10 RKey 0x48017deb VAddr 0x007f8d04882000
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx4_0
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ CQ Moderation   : 100
+ Mtu             : 2048[B]
+ Link type       : IB
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0x6aa QPN 0x1f8bc PSN 0xf1960e OUT 0x10 RKey 0x48017eeb VAddr 0x007fad604bb000
+ remote address: LID 0x6aa QPN 0x1f8bb PSN 0x1636e1 OUT 0x10 RKey 0x48017deb VAddr 0x007f8d04882000
+ remote address: LID 0x6aa QPN 0x1f8bc PSN 0xf1960e OUT 0x10 RKey 0x48017eeb VAddr 0x007fad604bb000
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[MB/sec]    BW average[MB/sec]   MsgRate[Mpps]
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[MB/sec]    BW average[MB/sec]   MsgRate[Mpps]
+ 2          1000             6.65               6.41   		   3.360140
+ 4          1000             27.34              27.23  		   7.137080
+ 8          1000             55.06              54.88  		   7.192766
+ 16         1000             110.11             109.98 		   7.207331
+ 32         1000             220.23             219.29 		   7.185825
+ 64         1000             427.25             386.83 		   6.337862
+ 128        1000             840.48             760.09 		   6.226687
+ 256        1000             1743.86            1742.26		   7.136303
+ 512        1000             3145.37            2880.59		   5.899440
+ 1024       1000             4335.69            4234.33		   4.335958
+ 2048       1000             4719.86            4698.68		   2.405724
+ 4096       1000             4944.62            4943.36		   1.265499
+ 8192       1000             5049.63            5049.54		   0.646341
+ 16384      1000             5106.21            5104.87		   0.326712
+ 32768      1000             5130.16            5130.01		   0.164160
+ 65536      1000             5138.39            5138.29		   0.082213
+ 131072     1000             5142.52            5142.49		   0.041140
+ 262144     1000             5142.77            5142.49		   0.020570
+ 524288     1000             5144.94            5144.92		   0.010290
+ 1048576    1000             5145.58            5145.57		   0.005146
+ 2097152    1000             5145.77            5145.72		   0.002573
+ 4194304    1000             5145.98            5145.98		   0.001286
+ 8388608    1000             4899.35            4899.08		   0.000612
+---------------------------------------------------------------------------------------
+ 8388608    1000             4899.35            4899.08		   0.000612
+---------------------------------------------------------------------------------------
+Buffer Size: 4 Bytes
+Average Round Trip Time (Latency): 0.400000 usec
+Throughput: 10.000000 MBps
+
+Buffer Size: 8 Bytes
+Average Round Trip Time (Latency): 0.377500 usec
+Throughput: 21.192053 MBps
+
+Buffer Size: 16 Bytes
+Average Round Trip Time (Latency): 0.383000 usec
+Throughput: 41.775457 MBps
+
+Buffer Size: 32 Bytes
+Average Round Trip Time (Latency): 0.446500 usec
+Throughput: 71.668533 MBps
+
+Buffer Size: 64 Bytes
+Average Round Trip Time (Latency): 0.456500 usec
+Throughput: 140.197152 MBps
+
+Buffer Size: 128 Bytes
+Average Round Trip Time (Latency): 0.795000 usec
+Throughput: 161.006289 MBps
+
+Buffer Size: 256 Bytes
+Average Round Trip Time (Latency): 0.697500 usec
+Throughput: 367.025090 MBps
+
+Buffer Size: 512 Bytes
+Average Round Trip Time (Latency): 0.570000 usec
+Throughput: 898.245614 MBps
+
+Buffer Size: 1024 Bytes
+Average Round Trip Time (Latency): 0.701500 usec
+Throughput: 1459.729152 MBps
+
+Buffer Size: 2048 Bytes
+Average Round Trip Time (Latency): 0.960000 usec
+Throughput: 2133.333333 MBps
+
+Buffer Size: 4096 Bytes
+Average Round Trip Time (Latency): 1.453500 usec
+Throughput: 2818.025456 MBps
+
+Buffer Size: 8192 Bytes
+Average Round Trip Time (Latency): 1.967000 usec
+Throughput: 4164.717844 MBps
+
+Buffer Size: 16384 Bytes
+Average Round Trip Time (Latency): 2.834500 usec
+Throughput: 5780.208150 MBps
+
+Buffer Size: 32768 Bytes
+Average Round Trip Time (Latency): 4.497000 usec
+Throughput: 7286.635535 MBps
+
+Buffer Size: 65536 Bytes
+Average Round Trip Time (Latency): 7.849500 usec
+Throughput: 8349.066820 MBps
+
+Buffer Size: 131072 Bytes
+Average Round Trip Time (Latency): 14.917000 usec
+Throughput: 8786.753369 MBps
+
+Buffer Size: 262144 Bytes
+Average Round Trip Time (Latency): 36.355000 usec
+Throughput: 7210.672535 MBps
+
+Buffer Size: 524288 Bytes
+Average Round Trip Time (Latency): 71.689500 usec
+Throughput: 7313.316455 MBps
+
+Buffer Size: 1048576 Bytes
+Average Round Trip Time (Latency): 133.739000 usec
+Throughput: 7840.465384 MBps
+
+Buffer Size: 2097152 Bytes
+Average Round Trip Time (Latency): 260.501500 usec
+Throughput: 8050.441168 MBps
+
+Buffer Size: 4194304 Bytes
+Average Round Trip Time (Latency): 524.450500 usec
+Throughput: 7997.521215 MBps
+
+Buffer Size: 8388608 Bytes
+Average Round Trip Time (Latency): 1056.934000 usec
+Throughput: 7936.737772 MBps
+
+Buffer Size: 16777216 Bytes
+Average Round Trip Time (Latency): 2970.443500 usec
+Throughput: 5648.050872 MBps
+
+Buffer Size: 33554432 Bytes
+Average Round Trip Time (Latency): 7289.714000 usec
+Throughput: 4602.983327 MBps
+
+Buffer Size: 67108864 Bytes
+Average Round Trip Time (Latency): 14871.238500 usec
+Throughput: 4512.661403 MBps
+
+Buffer Size: 134217728 Bytes
+Average Round Trip Time (Latency): 29927.237500 usec
+Throughput: 4484.801780 MBps
+
+Buffer Size: 268435456 Bytes
+Average Round Trip Time (Latency): 59934.835500 usec
+Throughput: 4478.788567 MBps
+
+Buffer Size: 536870912 Bytes
+Average Round Trip Time (Latency): 119956.041000 usec
+Throughput: 4475.563778 MBps
+
+Buffer Size: 1073741824 Bytes
+Average Round Trip Time (Latency): 239661.632500 usec
+Throughput: 4480.240799 MBps
