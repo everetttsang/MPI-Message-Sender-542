@@ -33,9 +33,9 @@ int main(int argc, char** argv) {
 
   struct timeval start;
   struct timeval end;
-  int *data = malloc(134217728 * sizeof(int)); // Allocate 512 MB of ints to send
+  int *data = malloc(268435456 * sizeof(int)); // Allocate 1GB of ints to send
   int maxSize = pow(2, 30);
-  int byteSize = sizeof(MPI_INT);
+  int byteSize = sizeof(int);
   int i;
   int numElements;
   long int rttSum;
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     system("ib_read_bw -a");
     while(byteSize <= maxSize){
       rttSum = 0;
-      numElements = byteSize / sizeof(MPI_INT);
+      numElements = byteSize / sizeof(int);
 
       for(i = 0; i < 1000; i++){
         gettimeofday(&start, NULL);
