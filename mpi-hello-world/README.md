@@ -14,6 +14,5 @@ Compilation Instructions
 3. To clean the directory, execute the command: make clean
 
 Run Instructions
-1. Execute the command: sbatch --exlusive run.job
-NOTE: The --exclusive flag is optional and reserves a node completely for this task
+1. Execute the command: sbatch run.job
 2. Observe the output at the "slurm-{job_id}.out" file.
