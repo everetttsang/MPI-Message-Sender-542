@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
   struct timeval end;
   struct ifreq ifr;
   int maxSize = pow(2, 30);
-  int *data = malloc(maxSize); // Allocate 1GB of ints to send
+  int *data;
   int bufferSize = sizeof(int);
   int numElements;
   int i;
@@ -66,7 +66,8 @@ int main(int argc, char** argv) {
     while(bufferSize <= maxSize){
       rttSum = 0;
       numElements = bufferSize / sizeof(int);
-
+      data = (int*) malloc(bufferSize);    
+  
       for(i = 0; i < 1000; i++){
         gettimeofday(&start, NULL);
 
@@ -108,6 +109,7 @@ int main(int argc, char** argv) {
 
     while(bufferSize <= maxSize){
       numElements = bufferSize / sizeof(int);
+      data = (int*) malloc(bufferSize);   
 
       for(i = 0; i < 1000; i++){
         MPI_Recv(data, numElements, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -117,6 +119,8 @@ int main(int argc, char** argv) {
       bufferSize = bufferSize * 2;
     }
   }
+  
+  free(data);
 
   // Finalize the MPI environment. No more MPI calls can be made after this
   MPI_Finalize();
